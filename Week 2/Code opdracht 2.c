@@ -12,17 +12,14 @@ void rood(void *pvParameters)
     TickType_t lastWait = xTaskGetTickCount();
     int waitTime = 1000 / portTICK_RATE_MS;
 
-    gpio_pad_select_gpio(REDGPIO);
-    /* Set the GPIO as a push/pull output */
-    gpio_set_direction(REDGPIO, GPIO_MODE_OUTPUT);
+    gpio_pad_select_gpio(33);
+    gpio_set_direction(33, GPIO_MODE_OUTPUT);
     while(1) {
-        /* Blink off (output low) */
-        printf("Turning off the LED\n");
-        gpio_set_level(REDGPIO, 0);
+        printf("Turning off red the LED\n");
+        gpio_set_level(33, 0);
         vTaskDelayUntil(&lastWait, waitTime);
-        /* Blink on (output high) */
-        printf("Turning on the LED\n");
-        gpio_set_level(REDGPIO, 1);
+        printf("Turning on the red LED\n");
+        gpio_set_level(33, 1);
         vTaskDelayUntil(&lastWait, waitTime);
     }
 }
@@ -33,15 +30,12 @@ void groen(void *pvParameters)
     int waitTime = 5000 / portTICK_RATE_MS;
 
     gpio_pad_select_gpio(GREENGPIO);
-    /* Set the GPIO as a push/pull output */
     gpio_set_direction(GREENGPIO, GPIO_MODE_OUTPUT);
     while(1) {
-        /* Blink off (output low) */
-        printf("Turning off the LED\n");
+        printf("Turning off the green LED\n");
         gpio_set_level(GREENGPIO, 0);
         vTaskDelayUntil(&lastWait, waitTime);
-        /* Blink on (output high) */
-        printf("Turning on the LED\n");
+        printf("Turning on the green LED\n");
         gpio_set_level(GREENGPIO, 1);
         vTaskDelayUntil(&lastWait, waitTime);
     }
