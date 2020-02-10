@@ -6,12 +6,18 @@
 
 void printName(void *pvParameters)
 {
-    printf("Name \n");
+    UBaseType_t name = uxTask(NULL);
+    TaskStatus_t xTaskDetails;
+
+    xHandle = xTaskGetHandle(name);
+
+    configASSERT( xHandle );
+    printf("Name \n" + vTaskGetInfo(xHandle,&xTaskDetails,pdTRUE,eInvalid));
 }
 
 void app_main()
 {
     for (int = 0; i < 20; i++){
-        xTaskCreate(printName(), "Groen", 256, NULL, 5, NULL);
+        xTaskCreate(printName(), "Print_Name", 256, NULL, 5, NULL);
     }
 }
